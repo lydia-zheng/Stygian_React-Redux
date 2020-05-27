@@ -1,55 +1,51 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { handleChange } from '../actions';
-//TODO: maybe needs to use redux form instead?
+import { connect, useSelector, useDispatch } from 'react-redux';
+import { handleUser, handleMsg, handleSubmit } from '../actions';
 
-class UserForm extends React.Component {
-//citation: https://reactjs.org/docs/forms.html#controlled-components
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: ''
-        };
+
+export default function UserForm () {
+    //useDispatch is a function from react-redux that returns the function to dispatch 'actions' to 'reducers'
+    //works similarily to mapDispatchToProps
+    const dispatch = useDispatch();
+
+    //useSelector is a function from react-redux that returns the part of the global state you want (or the gobal state but this should never be done)
+    //remember global state struction structure currently looks like this:
+    //state: {
+    //  value    
+    //}
+    const value = useSelector(state => state.value);
+
+    //callback function to dispatch the handleChange 'action' to our 'reducers'
+    //todo: memoize with useCallback ??
+    const handle_User = (e) => {
+        dispatch(handleUser(e.target.name, e.target.value));
+     }
+
+    const handle_Msg = (e) => {
+        dispatch(handleMsg(e.target.name, e.target.value));
+    }
+
+    const handle_Submit = () =>  {
+        dispatch(handleSubmit(document.getElementById('name').value, document.getElementById('msg').value));
     }
 
 
-   /*  handleChange = (event) => {
-        //arrow notation to avoid JS function creating its own context for this (scoping)
-        this.setState({value: event.target.value});
-    }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-
-        //Todo: function to pass this submitted value to add to list of messages
-    } */
-
-    
-
-    render() {
-       //TODO: implement handleSubmit
+     //TODO: implement handleSubmit
        //maybe replace submit button to general button component type
        //TODO: write separate handleChange function for message(CURRENTLY DISPLAYS THE SAME FOR BOTH USERNAME AND MESSAGE)
-       return(<form onSubmit= {this.handleSubmit}>
-           <label>
-               Username:
-               <input type="text" value={this.props.value} onChange={(e) => this.props.handleChange(e.target.value)}/>
-           </label>
-           <label>
-               Enter Your Message:
-               <input type="text" value={this.props.value} onChange={(e) => this.props.handleChange(e.target.value)}/>
-           </label>
-               <input type="submit" value="Submit"></input> 
-       </form>
+       // CHANGE TO HANDLE NAME AND HANDLE TEXT
+       return(<form onSubmit= {handle_Submit}>
+        <label>
+            Username:
+            <input id ="name" type="text" value={value} onChange={(e) => handle_User(e)}/>
+        </label>
+        <label>
+            Enter Your Message:
+            <input id="msg" type="text" value={value} onChange={(e) => handle_Msg(e)}/>
+        </label>
+            <input type="submit" value="Submit"></input> 
+    </form>
        );
-       
-    }
-}
 
-//state has entire state of app!!
-const mapStateToProps = (state) => { //name is by convention
-    return{ value: state.value }; //now it will appear as props
 }
-
-export default connect(mapStateToProps, {handleChange}) (UserForm);
-//calls a function that calls a function with Button as the param
