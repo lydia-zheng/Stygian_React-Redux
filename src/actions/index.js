@@ -17,11 +17,10 @@ export const handleMsg = (input_name2, value) => {
   };
 }
 
-export const handleSubmit = (name, msg) => {
+export const handleSubmit = (newMsg) => {
   return {
     type: "HANDLE_SUBMIT",
-    name,
-    msg
+    newMsg
   }
 }
 

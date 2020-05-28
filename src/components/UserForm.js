@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useSelector, useDispatch } from 'react-redux'; //connect used in old version
 import { handleUser, handleMsg, handleSubmit } from '../actions';
 
@@ -16,23 +16,40 @@ export default function UserForm () {
     //TODO: state.value figure out
     const value = useSelector(state => state.value);
 
+    const [newName, setNewName] = useState ();
+    const [newC, setNewC] = useState ();
+
+
     //callback function to dispatch the handleChange 'action' to our 'reducers'
     //todo: memoize with useCallback ??
     const handle_User = (e) => {
+        setNewName(e.target.value); //sets the new filled out states for newMsg to be added
         dispatch(handleUser(e.target.name, e.target.value));
      }
 
     const handle_Msg = (e) => {
+        setNewC(e.target.value); //sets the new filled out states for newMsg to be added
         dispatch(handleMsg(e.target.name, e.target.value));
     }
 
-    //test if this works or if the fields are needed
+    
     //TODO: implement handleSubmit AND CONNECT WITH ACTION AND SUCH; 
     //REMEMBER TO PREVENT DEFAULT
     const handle_Submit = (e) =>  {
+        //function: added new Msg
         e.preventDefault();
-        //uncomment
-        //dispatch(handleSubmit(document.getElementById('name').value, document.getElementById('msg').value));
+
+        //empty default state (undefined) msg
+        const addedMsg = {
+            name: newName,
+            content: newC
+        }
+        
+        if (addedMsg.name && addedMsg.content){
+            dispatch(handleSubmit(addedMsg));
+            //setNewName(""); //clear out past input
+           // setNewC(""); //clear out past input by reseting with new state
+        }   
     }
 
 
@@ -40,7 +57,7 @@ export default function UserForm () {
      
        //maybe replace submit button to general button component type
        
-       // CHANGE TO HANDLE NAME AND HANDLE TEXT
+
        return(<form onSubmit= {(e) => handle_Submit(e)}>
         <label>
             Username:

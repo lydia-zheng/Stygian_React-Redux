@@ -37,11 +37,13 @@ const messageReducer = ( messages = im, action) => {
    //TODO: add more actions that reducer computes on; figure out if initialize_messages is correct
    switch (action.type)
    {
-     /* case "INITIALIZE":
-       return messageList;//debug why it's not working   */
 
-     case "ADD_MESSAGES":
-       break;
+     case "HANDLE_SUBMIT":
+       //adds the submitted message to the existing im
+      return {
+        //concat newMsg to array of messages
+        messages: [...messages.messages, action.newMsg],
+      }
 
 
      default: return messages;
@@ -54,8 +56,9 @@ const formReducer = ( f = initialForm, action) => {
  switch (action.type){
   case "HANDLE_SUBMIT":
       //submit
-      break;
-      //TODO!!!! HOW TO ADD A MESSAGE
+      //TODO: add additional returned info or just comment out this case
+      return f;
+     
 
 
     

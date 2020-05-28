@@ -11,7 +11,7 @@
   background-color: #00044C;
   color: #B3B5CB;
   display: flex;
-  height: 100%; /*fills rest of page vertically*/
+  /* height: 100%; fills rest of page vertically */
   width: 100%;
 
 }

@@ -1,7 +1,7 @@
 //TODO EVERYTHING; template
-import React, { Component, Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import {useSelector, useDispatch } from 'react-redux';
-import {initializeName, initializeMsg} from "../actions"
+
 
 export default function MsgList (){
     //state: {
