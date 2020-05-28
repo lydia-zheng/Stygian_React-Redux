@@ -1,38 +1,134 @@
-.App {
-  text-align: center;
+#root{
+  margin-left: 0; /*react added some weird leftside margin*/
+}
+.body {
+  height:100vh; /*viewport height*/
+  width: 100vw; /*viewport width*/
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container{
+  font-family:Arial, Helvetica, sans-serif;
+  background-color: #00044C;
+  color: #B3B5CB;
+  display: flex;
+  height: 100%; /*fills rest of page vertically*/
+  width: 100%;
+
+}
+header {
+  background:black;
+  color: white;
+  padding: 20px;
+  display: flex;
+  width: 100%
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+footer {
+  background:#43467F;
+  color: white;
+  padding: 20px;
+  display:flex;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+section {
+  background: white;
+  color: black;
+  padding: 20px;
+  display: flex;  
+}
+
+div{
+  margin: auto; /*automatically sets the margin (outside space of div)*/
+  width: 100px;
+
+}
+li{
+  display: inline-block;
+  margin: 0 20px 20px 0; /*order from top, right, bot, left, same as margin-right:20px*/
+}
+
+ul {
+  margin: 0;
+  padding: 0; /*margin and padding are automatically added to uls, makes them go away*/
+  list-style-type: none; /* removes bullet points!! */
+
+}
+
+button {
+  background: #2e2766;;
+  color:white;
+}
+
+
+#form {
+  box-sizing: border-box;
+  
+  
+}
+input{
+  width: 100;
+  min-width: 0; /*browser automatically gives input a width, cannot shrink below its default and will overflow flex container otherwise*/
+}
+label {
+  display: inline-block;
+  /*width: 200px; to ensure label text doesn't overflow to next line; label width= form width*/
+}
+
+/* form {
+  width: 163px; /*new fix to text overflow} */
+
+#all_messages {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.msg_username {
+  background: #212B36;
+  display: flex;
+  padding: 0.5em .5em .5em .5em;
+  border-radius: 10px;
+}
+.msg_message {
+  margin: .5rem;
+  padding: 0.5em .5em .5em .5em;
+  color: #1C2260;
+  background: white;
+  border-radius: 5%;
+  position: relative;
+  left: 2em;
+}
+.msg_content > div{
+  width: min-content; /*smallest width where box's contents don't overflow the box itself*/
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.msg_send {
+  position: relative; 
+  animation-name: slide-right;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  transition: ease-in;
+
+}
+
+
+
+/*KEY FRAMES*/
+
+@keyframes slide-right {
+
+  0% {
+      opacity: 0;
+      transform: translateX(-5em);
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+      opacity: 1;
+      transform: translateX(0);
   }
 }
+ 
+
+
+
+
+
+

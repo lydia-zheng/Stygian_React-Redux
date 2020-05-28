@@ -1,17 +1,27 @@
 import React from 'react';
 import UserForm from './UserForm';
 import MsgList from './MsgList';
+import '../App.css';
 
 const App = () => {   //this is how you make a functional component
 	return (
-<div className = "container"> 
+<div className= "body" > 
   <header>Stygian Home</header>
-  <div id="all_messages"></div>
-  
-  <div id="form">
+  <section className="container">
+    <div id="all_messages">
+
+      <MsgList />
+    </div>
+
+    <div id="form">
     <UserForm/>
-    {/* <SubmitButton/> */}
+    
   </div>
+
+  </section>
+  
+  
+  
 
   </div>
 );

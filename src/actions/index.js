@@ -1,4 +1,5 @@
 
+//TODO: if time permitted extract action strings into a constant.js with action object
 export const handleUser = (input_name1, value) => {
   return {
     type: "HANDLE_USER",
@@ -24,3 +25,16 @@ export const handleSubmit = (name, msg) => {
   }
 }
 
+export const initializeName = (name) => {
+  return {
+    type: "INITIALIZE_NAME",
+    name 
+  }
+}
+
+export const initializeMsg = (msg) => {
+  return {
+    type: "INITIALIZE_MSG",
+    msg 
+  }
+}

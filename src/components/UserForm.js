@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect, useSelector, useDispatch } from 'react-redux';
+import {useSelector, useDispatch } from 'react-redux'; //connect used in old version
 import { handleUser, handleMsg, handleSubmit } from '../actions';
 
 
@@ -13,6 +13,7 @@ export default function UserForm () {
     //state: {
     //  value    
     //}
+    //TODO: state.value figure out
     const value = useSelector(state => state.value);
 
     //callback function to dispatch the handleChange 'action' to our 'reducers'
@@ -25,17 +26,22 @@ export default function UserForm () {
         dispatch(handleMsg(e.target.name, e.target.value));
     }
 
-    const handle_Submit = () =>  {
-        dispatch(handleSubmit(document.getElementById('name').value, document.getElementById('msg').value));
+    //test if this works or if the fields are needed
+    //TODO: implement handleSubmit AND CONNECT WITH ACTION AND SUCH; 
+    //REMEMBER TO PREVENT DEFAULT
+    const handle_Submit = (e) =>  {
+        e.preventDefault();
+        //uncomment
+        //dispatch(handleSubmit(document.getElementById('name').value, document.getElementById('msg').value));
     }
 
 
 
-     //TODO: implement handleSubmit
+     
        //maybe replace submit button to general button component type
-       //TODO: write separate handleChange function for message(CURRENTLY DISPLAYS THE SAME FOR BOTH USERNAME AND MESSAGE)
+       
        // CHANGE TO HANDLE NAME AND HANDLE TEXT
-       return(<form onSubmit= {handle_Submit}>
+       return(<form onSubmit= {(e) => handle_Submit(e)}>
         <label>
             Username:
             <input id ="name" type="text" value={value} onChange={(e) => handle_User(e)}/>
