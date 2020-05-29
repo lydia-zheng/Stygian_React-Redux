@@ -15,10 +15,17 @@ const App = () => {   //this is how you make a functional component
       <section className="container">
         <div id="all_messages">
           <MsgList />
-          <button className="detail_button" onClick={toggle}>Show Details</button>   
+          <button className="detail_button" onClick={() => toggle()}>Show Details</button>   
         </div>
         <div id="form">
-        <DetailView/>
+        {isShowing ? 
+        <div>
+           <button id ="close_button" onClick={() => toggle()}>X</button>
+          <DetailView />
+        </div>
+        
+        : null
+        }
         <UserForm/>
       </div>
 
