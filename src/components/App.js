@@ -1,39 +1,34 @@
-import React from 'react';
+import React /*, {useState} */ from 'react';
 import UserForm from './UserForm';
 import MsgList from './MsgList';
 import '../App.css';
 import DetailView from './DetailView';
+import useModal from './useModal';
 
 
 const App = () => {   //this is how you make a functional component
- 
-  return (
-  <div className= "body" > 
-    <header>Stygian Home</header>
-    <section className="container">
-      <div id="all_messages">
-        <MsgList />
-        
-        {/* <button className="button-default" onClick={toggle}>Show Modal</button>
-      <DetailView
-        isShowing={isShowing}
-        hide={toggle}
-        /> */}
-        
+    const {isShowing, toggle} = useModal();
+
+    return (
+    <div className= "body" > 
+      <header>Stygian Home</header>
+      <section className="container">
+        <div id="all_messages">
+          <MsgList />
+          <button className="detail_button" onClick={toggle}>Show Details</button>   
+        </div>
+        <div id="form">
+        <DetailView/>
+        <UserForm/>
       </div>
 
-      <div id="form">
-      <DetailView/>
-      <UserForm/>
-    </div>
+      </section>
+      
+      
+      
 
-    </section>
-    
-    
-    
-
-    </div>
-  );
+      </div>
+    );
   }
 //TODO: add list to the all_messages part; add addition div for details and extra thing
 

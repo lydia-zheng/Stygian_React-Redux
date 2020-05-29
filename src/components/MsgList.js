@@ -43,12 +43,12 @@ export default function MsgList (){
             return (
                 <Fragment key= {i}>
                     {
-                            <li className="msg_send">
+                            <li className="msg_send" onClick = {() =>getActiveMessageID(i)}>
                             <div className="msg">
                             <div className ="msg_content">
                     <div className="msg_username">{msg.name}</div>
                     <div className="msg_message">{msg.content}</div>
-                        <button className="detail_button"  onClick = {() =>getActiveMessageID(i)}/* onClick= {handle_Toggle} */>Details</button>
+                        {/* <button className="detail_button"  onClick = {() =>getActiveMessageID(i)}/* onClick= {handle_Toggle} />Details</button> */}
                             </div>
                             </div>
                         </li>   

@@ -18,7 +18,7 @@ import { useSelector } from 'react-redux';
 
 
 export default function DetailView (i){
-    //TODO NOT DISPLAYING CORRECTLY FOR INDEX 0
+   
     const activeMsgID = useSelector(state => state.id);
     const msgList = useSelector(state =>state.messages.messages);
     let name;
@@ -34,15 +34,22 @@ export default function DetailView (i){
     }
 
     return (
-        <div id= "detailedView">
-            <h1>Detailed View </h1>
+        
+        <div id= "detailedView" className='popup'>
+            <div className="popup_inner">
+                <h1>Detailed View </h1>
             <p>message index is: {activeMsgID} <br/><br/>
             message username: {name}<br/><br/>
             message content: {content}<br/><br/>
             </p>
+            
+            </div>
+            
 
         </div>   
     );
 }
 
- 
+
+
+    
