@@ -37,3 +37,13 @@ export const initializeMsg = (msg) => {
     msg 
   }
 }
+
+export function getActiveMsg(id) {
+  return {
+    type: "GET_ACTIVE_MSG",
+    id
+  };
+}
+
+
+

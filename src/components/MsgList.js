@@ -1,12 +1,12 @@
 //TODO EVERYTHING; template
-import React, { Fragment } from 'react';
+import React, {Fragment } from 'react';
 import {useSelector, useDispatch } from 'react-redux';
+import { getActiveMsg } from '../actions';
 
 
 export default function MsgList (){
-    //state: {
-    //     
-    //}
+
+
     const dispatch = useDispatch();
    
     /*
@@ -19,19 +19,27 @@ export default function MsgList (){
 
     The setState function is used to update the state. It accepts a new state value and enqueues a re-render of the component.
      */
+         /*cite: https://www.debuggr.io/react-map-of-undefined/ 
+     undefined or null values are ignored inside JSX so it's safe to pass it on for first render
+     */
     
     const listItems = useSelector(state => state.messages.messages); //first messages is im in messageReducer; .messages gives the array part of messages
     
+    
 
-     /*cite: https://www.debuggr.io/react-map-of-undefined/ 
-     undefined or null values are ignored inside JSX so it's safe to pass it on for first render
-     */
+    const getActiveMessageID = (i) => {
+        dispatch(getActiveMsg(i));
+    }
+   
 
      //TODO: somehow load data into ims so the mapping starts
     let msgsToRender;
-    //if (ims) {
+    if (listItems) {
         msgsToRender =
+        
          listItems.map((msg, i) => {
+         //iterate  and get the hook's default isShowing and toggle for each message
+            
             return (
                 <Fragment key= {i}>
                     {
@@ -40,6 +48,7 @@ export default function MsgList (){
                             <div className ="msg_content">
                     <div className="msg_username">{msg.name}</div>
                     <div className="msg_message">{msg.content}</div>
+                        <button className="detail_button"  onClick = {() =>getActiveMessageID(i)}/* onClick= {handle_Toggle} */>Details</button>
                             </div>
                             </div>
                         </li>   
@@ -47,9 +56,9 @@ export default function MsgList (){
                 </Fragment>
             )
         })
-    /* } else {
+    }else {
         msgsToRender = "Loading..."; //TODO: FIX CURRENTLY ALWAYS UNDEFINED
-    } */
+    } 
 
 
      //TODO: get action to populate ul with lis

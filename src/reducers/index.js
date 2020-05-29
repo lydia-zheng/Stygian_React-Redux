@@ -31,9 +31,10 @@ const initialForm = {
 
 
 
+
 //**Reducers** TODO: Might need to combine messageReducer into formReducer
 
-const messageReducer = ( messages = im, action) => {
+const messageReducer = (messages = im, action) => {
    //TODO: add more actions that reducer computes on; figure out if initialize_messages is correct
    switch (action.type)
    {
@@ -42,11 +43,20 @@ const messageReducer = ( messages = im, action) => {
        //adds the submitted message to the existing im
       return {
         //concat newMsg to array of messages
-        messages: [...messages.messages, action.newMsg],
+        messages: [...messages.messages, action.newMsg], //spread attribute : ...
       }
 
+      /* case "HANDLE_TOGGLE":
+        const isShowing = false;
+        const i = 0;
+        return {
+          isShowing: !action.isShowing, //makes it opposite of what it was
+          messages: action.messages.messages,
+          i: action.i
+        } */
 
-     default: return messages;
+
+     default: return messages; //returns object of array of messages
     }; 
 };
 
@@ -54,13 +64,6 @@ const messageReducer = ( messages = im, action) => {
 
 const formReducer = ( f = initialForm, action) => {
  switch (action.type){
-  case "HANDLE_SUBMIT":
-      //submit
-      //TODO: add additional returned info or just comment out this case
-      return f;
-     
-
-
     
   case "HANDLE_USER":
       //creating a copy wiht object.assign(), not mutating the original state; assigns v1 to be action's value
@@ -78,12 +81,28 @@ const formReducer = ( f = initialForm, action) => {
  }
  
 };
+
+ const detailsReducer = (id= null, action) => {
+  switch (action.type){
+    //grab the index of the active message to display modal for
+    case "GET_ACTIVE_MSG":
+      
+      return id = action.id;
+
+    default: return id;
+  }
+}; 
+
+
  
 export default combineReducers({
   //Todo: messageList not connected to rest action, state, etc
   messages: messageReducer,
-  f: formReducer
+  f: formReducer,
+  id: detailsReducer
+
  
 //anotherKey: anotherReducer //all your reducers should be combined
-});
+}
+);
 
