@@ -46,14 +46,11 @@ const messageReducer = (messages = im, action) => {
         messages: [...messages.messages, action.newMsg], //spread attribute : ...
       }
 
-      /* case "HANDLE_TOGGLE":
-        const isShowing = false;
-        const i = 0;
-        return {
-          isShowing: !action.isShowing, //makes it opposite of what it was
-          messages: action.messages.messages,
-          i: action.i
-        } */
+     case "GET_DELETE":
+       return {
+         //return the filtered message list that's not the deleted id
+         messages: messages.messages.filter((m, i) => i!== action.id),
+       }
 
 
      default: return messages; //returns object of array of messages

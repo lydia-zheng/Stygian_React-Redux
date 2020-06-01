@@ -1,7 +1,7 @@
 //TODO EVERYTHING; template
 import React, {Fragment } from 'react';
 import {useSelector, useDispatch } from 'react-redux';
-import { getActiveMsg } from '../actions';
+import { getActiveMsg, getDelete } from '../actions';
 
 
 export default function MsgList (){
@@ -30,6 +30,10 @@ export default function MsgList (){
     const getActiveMessageID = (i) => {
         dispatch(getActiveMsg(i));
     }
+
+    const getDeleteId = (i) => {
+        dispatch(getDelete(i));
+    }
    
 
      //TODO: somehow load data into ims so the mapping starts
@@ -46,6 +50,7 @@ export default function MsgList (){
                             <li className="msg_send" onClick = {() =>getActiveMessageID(i)}>
                             <div className="msg">
                             <div className ="msg_content">
+                                <button onClick= {()=>getDeleteId(i)}>X</button>
                     <div className="msg_username">{msg.name}</div>
                     <div className="msg_message">{msg.content}</div>
                         {/* <button className="detail_button"  onClick = {() =>getActiveMessageID(i)}/* onClick= {handle_Toggle} />Details</button> */}

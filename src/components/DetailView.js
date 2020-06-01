@@ -23,8 +23,8 @@ export default function DetailView (){
 
     const activeMsgID = useSelector(state => state.id);
     const msgList = useSelector(state =>state.messages.messages);
-    let name;
-    let content;
+    let name = "N/A";
+    let content  = "N/A";
     //console.log("activeMsgID:", activeMsgID);
     
     

@@ -45,5 +45,12 @@ export function getActiveMsg(id) {
   };
 }
 
+export function getDelete(id) {
+  return {
+    type: "GET_DELETE",
+    id
+  };
+}
+
 
 
