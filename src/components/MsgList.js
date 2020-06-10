@@ -53,7 +53,7 @@ export default function MsgList (){
                                 <button onClick= {()=>getDeleteId(i)}>X</button>
                     <div className="msg_username">{msg.name}</div>
                     <div className="msg_message">{msg.content}</div>
-                        {/* <button className="detail_button"  onClick = {() =>getActiveMessageID(i)}/* onClick= {handle_Toggle} />Details</button> */}
+                    {/* <div className="msg_date">{msg.date}</div> */}
                             </div>
                             </div>
                         </li>   

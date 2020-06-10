@@ -25,6 +25,8 @@ export default function DetailView (){
     const msgList = useSelector(state =>state.messages.messages);
     let name = "N/A";
     let content  = "N/A";
+    let date = "N/A";
+    
     //console.log("activeMsgID:", activeMsgID);
     
     
@@ -33,6 +35,7 @@ export default function DetailView (){
         
         name = msgList[activeMsgID].name;
         content = msgList[activeMsgID].content;
+        date = msgList[activeMsgID].date;
     }
 
     return (
@@ -41,8 +44,9 @@ export default function DetailView (){
             <div className="popup_inner">
                 <h1>Detailed View </h1>
             <p>message index is: {activeMsgID} <br/><br/>
-            message username: {name}<br/><br/>
-            message content: {content}<br/><br/>
+            username: {name}<br/><br/>
+            content: {content}<br/><br/>
+            date: {date} <br/><br/>
             </p>
             
             </div>
