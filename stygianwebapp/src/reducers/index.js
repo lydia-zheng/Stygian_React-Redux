@@ -2,6 +2,7 @@ import {combineReducers } from 'redux';
 
 //**initial state constants**
 
+//**TODO**: comment this out/readjust to be empty object; have get request in msglist handle grabbing  initial data
 const im = {
    messages: [
   {

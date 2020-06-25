@@ -1,5 +1,5 @@
 
-//Stand along component that just fetches api data
+//Stand along example component that just fetches api data
 //functional component
 
 import React, { useState, useEffect } from 'react';
