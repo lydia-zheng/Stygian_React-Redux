@@ -37,7 +37,7 @@ export default function getMessages () {
     
     dispatch(getImPending()); //calls action for pending
     return fetch('http://localhost:9000/messages')
-    .then( (response) =>{
+    .then((response) =>{
       //Handle HTTP errors since fetch doesn't
       if(!response.ok){
         throw Error(response.statusText);
