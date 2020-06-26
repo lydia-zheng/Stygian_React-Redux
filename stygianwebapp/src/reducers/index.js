@@ -2,10 +2,16 @@ import {combineReducers } from 'redux';
 
 //**initial state constants**
 
-//**TODO**: comment this out/readjust to be empty object; have get request in msglist handle grabbing  initial data
-const im = {
+//**TODO**: comment this out/readjust to be empty object; have get request handle grabbing initial data
+const initialState = {
+  getInitialMessages: {
+    isPending: false,
+    isSuccess: false,
+    isFailure: false,
+    error: null
+  },
    messages: [
-  {
+  /* {
       name: "Turtle",
       content: "When did you change my username??",
       date: "06/03/2020, 06:06:06 PM"
@@ -25,7 +31,7 @@ const im = {
       name: "Driz",
       content: "That we're all fictional? Yeah, no biggie.",
       date: "06/05/2020, 00:10:21 AM"
-  }
+  } */
 ]
 
 }
@@ -40,23 +46,72 @@ const initialForm = {
 
 //**Reducers** TODO: Might need to combine messageReducer into formReducer
 
-const messageReducer = (messages = im, action) => {
+const messageReducer = (messages = initialState, action) => {
    //TODO: add more actions that reducer computes on; figure out if initialize_messages is correct
    switch (action.type)
    {
-
+     
      case "HANDLE_SUBMIT":
        //adds the submitted message to the existing im
       return {
-        //concat newMsg to array of messages
+        //concat newMsg to array of messages;
+        //TODO: messages.message may be changed due to structure change 
+        ...messages, //should be grabbing the 3 booleans
         messages: [...messages.messages, action.newMsg], //spread attribute : ...
       }
 
      case "GET_DELETE":
        return {
          //return the filtered message list that's not the deleted id
+        //TODO: messages.message may be changed due to structure change
+        ...messages, //should be grabbing three booleans
          messages: messages.messages.filter((m, i) => i!== action.id),
        }
+       case "GET_IM_PENDING":
+         //mark state as "loading" so it can show spinner or something
+         //reset all errors
+         return {
+           ...messages, //spread operator: same as object.assign but cleaner
+           getInitialMessages : {
+             isPending: true,
+             isSuccess: false,
+             isFailure: false,
+             error: null
+           },
+
+         };
+       
+       case "GET_IM_SUCESS":
+          //Todo: API fetch call to grab initial messages
+          //All done: set pending to false
+          //replace items with ones returned from server
+          return {
+            ...messages,
+            getInitialMessages : {
+              isPending: false,
+              isSuccess: true,
+              isFailure: false,
+              error: null
+            },
+            messages: action.msg
+
+          }; 
+       case "GET_IM_FAILURE":
+         //failed but is donoe
+         //save the error so we can display it somewhere
+         //since it failed:
+        
+          return {
+            getInitialMessages : {
+              isPending: false,
+              isSuccess: false,
+              isFailure: true,
+              error: action.error
+            },
+            messages: []
+             //tentative: no messages displayed-> can also keep them around!
+             //edit later
+          }; 
 
 
      default: return messages; //returns object of array of messages

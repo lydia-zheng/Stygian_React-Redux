@@ -1,28 +1,21 @@
 //TODO EVERYTHING; template
-import React, {Fragment } from 'react';
+import React, {Fragment, useEffect} from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import { getActiveMsg, getDelete } from '../actions';
-
+import getMessages from './getMessages';
 
 export default function MsgList (){
 
 
     const dispatch = useDispatch();
    
-    /*
-    useState should be used only inside functional components. useState is the way if we need an internal state and don't need to implement more complex logic such as lifecycle methods.
-
-    const [state, setState] = useState(initialState);
-    Returns a stateful value, and a function to update it.
-
-    During the initial render, the returned state (state) is the same as the value passed as the first argument (initialState).
-
-    The setState function is used to update the state. It accepts a new state value and enqueues a re-render of the component.
-     */
-         /*cite: https://www.debuggr.io/react-map-of-undefined/ 
-     undefined or null values are ignored inside JSX so it's safe to pass it on for first render
-     */
     
+    
+    
+    //same as ComponentDidMount; runs after component is rendered to DOM;
+    //good place for API call using helper function getMessages
+    useEffect(getMessages(), []);
+
     const listItems = useSelector(state => state.messages.messages); //first messages is im in messageReducer; .messages gives the array part of messages
     
     
@@ -62,11 +55,8 @@ export default function MsgList (){
             )
         })
     }else {
-        msgsToRender = "Loading..."; //TODO: FIX CURRENTLY ALWAYS UNDEFINED
+        msgsToRender = "Loading..."; 
     } 
-
-
-     //TODO: get action to populate ul with lis
      
     return( 
     

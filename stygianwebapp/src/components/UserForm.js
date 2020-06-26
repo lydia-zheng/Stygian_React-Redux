@@ -52,7 +52,6 @@ export default function UserForm () {
             date: newD
         }
         const timestamp = Date.now(); // This would be the timestamp you want to format
-
             
         setNewD( new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(timestamp)); 
         //setting the proper timestamp; fixed doesn't allow identical messages to have different timestamp
@@ -63,12 +62,28 @@ export default function UserForm () {
 
             dispatch(handleSubmit(addedMsg));
 
-            //setNewName(""); //clear out past input
-           // setNewC(""); //clear out past input by reseting with new state
+           
         }   
+    
+        //sending data to server
+        //TODO: should handle _id in back end server
+       
+       
+       
+        /*  axios({
+            
+            url:'http://localhost:9000/save',
+            method: 'POST',
+            data: addedMsg
+        })
+        .then(() => {
+            console.log('Data has been sent to the server');
+        })
+        .catch(() => {
+            console.log('Internal server error');
+        });; */
+        
     }
-
-
 
      
        //maybe replace submit button to general button component type

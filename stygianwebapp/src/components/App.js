@@ -4,8 +4,7 @@ import MsgList from './MsgList';
 import '../App.css';
 import DetailView from './DetailView';
 import useModal from './useModal';
-import Home from './Home';
-import Rainbows from './Rainbows';
+
 
 
 

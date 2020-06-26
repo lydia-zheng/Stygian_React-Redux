@@ -52,5 +52,25 @@ export function getDelete(id) {
   };
 }
 
+//api call actions
+//Get initial message
+export function getImPending(){
+  return {
+    type: "GET_IM_PENDING",
+  };
+}
+export function getImSucess(msg){
+  return {
+    type: "GET_IM_SUCESS",
+    msg
+  };
+}
+export function getImFailure(error){
+  return {
+    type:"GET_IM_FAILURE",
+    error
+  };
+}
+
 
 

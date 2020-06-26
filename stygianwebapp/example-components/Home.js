@@ -5,7 +5,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-const Home = (props) => {
+const Home = () => {
   const [name, setName] = useState('there');
   useEffect(() => {
     fetch('http://localhost:9000/users/1')
