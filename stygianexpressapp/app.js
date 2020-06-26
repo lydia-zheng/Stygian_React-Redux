@@ -7,6 +7,7 @@ var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const database = require('./database');
 
 var app = express();
 
@@ -39,5 +40,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//database:
+database.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 module.exports = app;

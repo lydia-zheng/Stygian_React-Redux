@@ -12,9 +12,12 @@ let MONGODBCONNECTIONURL = `mongodb+srv://mystic001:${PASSWORD}@stygian.eatfu.mo
 mongoose
         .connect(MONGODBCONNECTIONURL, {useNewUrlParser:true})
         .catch(e => {
-            console.error('Connection error', e.message)
+            console.error('Connection error', e.message);
         });
 
+mongoose.connection.on('connected', () => {
+    console.log('Mongoose is connected!');
+});
 
 //set up mongoose connection
 const database = mongoose.connection;

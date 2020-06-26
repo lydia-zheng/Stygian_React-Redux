@@ -4,7 +4,7 @@ var router = express.Router();
 
 
 //TEMPORARY -- TODO: fix later
-let users = [
+/* let users = [
   {
     id: '1',
     username: 'smah',
@@ -16,13 +16,13 @@ let users = [
 /* GET users listing. */
 
 
-router.get('/', function(req, res, next) {
+/* router.get('/', function(req, res, next) {
   res.setHeader('Content-Type', 'application/json');
   res.send(users);
 });
+ 
 
-
-router.get('/:userId', function(req, res, next) {
+ router.get('/:userId', function(req, res, next) {
   const foundUser = users.find(user => user.id === req.params.userId);
   res.setHeader('Content-Type', 'application/json');
   res.send(foundUser);
@@ -34,6 +34,6 @@ router.post('/', function (req, res, next){
   users.push(newUser);
   res.setHeader('Content-Type', 'application/json');
   res.send(newUser);
-})
+}) */
 
 module.exports = router;
