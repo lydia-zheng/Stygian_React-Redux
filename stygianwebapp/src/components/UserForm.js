@@ -51,10 +51,12 @@ export default function UserForm () {
             content: newC,
             date: newD
         }
-        const timestamp = Date.now(); // This would be the timestamp you want to format
+        const timestamp = Date.now()/1000; //converts to unix timestamp
             
-        setNewD( new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(timestamp)); 
-        //setting the proper timestamp; fixed doesn't allow identical messages to have different timestamp
+        //setNewD( new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(timestamp)); 
+     
+        setNewD(timestamp); 
+        
         console.log(addedMsg.date);
         
         if (addedMsg.name && addedMsg.content){
