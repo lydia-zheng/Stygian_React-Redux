@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 router.get('/messages', controller.getMessages);
 
 
-//the route that react uses to send the new message data
+/* //the route that react uses to send the new message data
 //TODO: not implemented proper with front end yet
 router.post('/save', (req, res) => {
   console.log('Body', req.body);
@@ -20,6 +20,6 @@ router.post('/save', (req, res) => {
   })
 }
 
-);
+); */
 
 module.exports = router;

@@ -3,10 +3,10 @@ const Messages = require('../models/MsgModel');
 const express = require('express');
 const Request = require("request");
 
-//TODO: not sure if the backend API answers properly to GET /messages and if React is fetching properly
+//TODO:messages are currently 404 not found
 const getMessages = async (req, res) => {
 
-    await getMessages.find({}, (err, messages) => {
+    await Messages.find({}, (err, messages) => {
 
         if (err) {
             return res.status(400).json({success:false, error:err})
@@ -19,6 +19,7 @@ const getMessages = async (req, res) => {
         }
 
         return res.status(200).json({sucess: true, data: messages})
+        
    }).catch(err =>console.log(err))
 };
 

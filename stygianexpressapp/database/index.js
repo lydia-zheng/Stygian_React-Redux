@@ -7,7 +7,7 @@ let PASSWORD = process.env.DB_PASSWORD;
 
 let DBNAME = "msg";
 
-let MONGODBCONNECTIONURL = `mongodb+srv://mystic001:${PASSWORD}@stygian.eatfu.mongodb.net/${DBNAME}retryWrites=true&w=majority`
+let MONGODBCONNECTIONURL = `mongodb+srv://mystic001:${PASSWORD}@stygian.eatfu.mongodb.net/${DBNAME}?retryWrites=true&w=majority`;
 
 mongoose
         .connect(MONGODBCONNECTIONURL, {useNewUrlParser:true})
