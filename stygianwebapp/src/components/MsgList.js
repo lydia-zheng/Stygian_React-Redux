@@ -1,7 +1,7 @@
 //TODO EVERYTHING; template
 import React, {Fragment, useState, useEffect} from 'react';
 import {useSelector, useDispatch } from 'react-redux';
-import { getActiveMsg, getDelete, getImPending } from '../actions';
+import { getActiveMsg, getDelete, getIm } from '../actions';
 
 
 export default function MsgList (){
@@ -19,22 +19,7 @@ export default function MsgList (){
     //useEffect for side effect; same as componentdidmount
     useEffect(()=>{
         dispatch(getIm());
-        /* 
-        //directly calling axios from component
-        axios.get('http://localhost:9000/messages')
-            .then(res => {
-                setLoading(false)
-                setGet(res.data)
-                console.log("Res data:", res.data);//debug use
-                setError('') //to clear previous errors if any
-            })
-            .catch( err => {
-                setLoading(false)
-                setGet({}) //hide existing post displayed in browser
-                setError('Something went wrong with fetching Initial Messages!')
-            } 
-            )
-        */
+    
     }, []); 
     
     const listItems = useSelector(state => state.messages.messages); //first messages is im in messageReducer; .messages gives the array part of messages
@@ -61,10 +46,11 @@ export default function MsgList (){
         listItems.map((msg, i) => {
         //iterate  and get the hook's default isShowing and toggle for each message
         
+
+       
         return (
             <Fragment key= {i}>
-                {loading ? 'Loading' : get.title }
-                {error ? error: null}
+                
                 {
                         <li className="msg_send" onClick = {() =>getActiveMessageID(i)}>
                         <div className="msg">
@@ -80,8 +66,10 @@ export default function MsgList (){
             </Fragment>
         )
     })
-    console.log("msgtoRender", msgsToRender);
-     
+    //console.log("msgtoRender", msgsToRender);
+    
+    
+     //TODO: SET UP CONDITIONS FOR LOADING, SUCCESS AND FAILURE TO DECIDE WHAT TO DISPLAY
     return( 
     
     <ul className= "msg_list"> 
