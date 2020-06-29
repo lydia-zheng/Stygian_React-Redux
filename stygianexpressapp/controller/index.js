@@ -7,7 +7,7 @@ const Request = require("request");
 const getMessages = async (req, res) => {
 
     await Messages.find({}, (err, messages) => {
-
+        
         if (err) {
             return res.status(400).json({success:false, error:err})
         }

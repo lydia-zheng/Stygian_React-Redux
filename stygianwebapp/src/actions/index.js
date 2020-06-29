@@ -1,3 +1,7 @@
+import axios from 'axios';
+
+
+
 
 //TODO: if time permitted extract action strings into a constant.js with action object
 export const handleUser = (input_name1, value) => {
@@ -54,18 +58,36 @@ export function getDelete(id) {
 
 //api call actions
 //Get initial message
-export function getImPending(){
+
+export const getIm = () => {
+  return dispatch => {
+    dispatch(getImPending());
+
+    axios
+      .get('http://localhost:9000/messages')
+            .then(res => {
+              dispatch(getImSucess(res.data));              
+              console.log("Res data:", res.data);//debug usg
+            })
+            .catch( err => {
+                dispatch(getImFailure(err));
+            } 
+            )
+    
+  }
+}
+export const getImPending = () =>{
   return {
     type: "GET_IM_PENDING",
   };
 }
-export function getImSucess(msg){
+export const getImSucess = (msg) => {
   return {
     type: "GET_IM_SUCESS",
     msg
   };
 }
-export function getImFailure(error){
+export const getImFailure = (error) =>{
   return {
     type:"GET_IM_FAILURE",
     error

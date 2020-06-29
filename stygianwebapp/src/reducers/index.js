@@ -8,30 +8,8 @@ const initialState = {
     isPending: false,
     isSuccess: false,
     isFailure: false,
-    error: null
   },
    messages: [
-  /* {
-      name: "Turtle",
-      content: "When did you change my username??",
-      date: "06/03/2020, 06:06:06 PM"
-      
-  },
-  {
-      name: "Driz",
-      content: "Just now. Why?",
-      date: "06/04/2020, 00:01:23 AM"
-  },
-  {
-      name: "Turtle",
-      content: "Urg. Nevermind that, did you hear about the news? Apparently..",
-      date: "06/04/2020, 00:03:45 AM"
-  },
-  {
-      name: "Driz",
-      content: "That we're all fictional? Yeah, no biggie.",
-      date: "06/05/2020, 00:10:21 AM"
-  } */
 ]
 
 }
@@ -75,8 +53,7 @@ const messageReducer = (messages = initialState, action) => {
            getInitialMessages : {
              isPending: true,
              isSuccess: false,
-             isFailure: false,
-             error: null
+             error: null,
            },
 
          };
@@ -90,23 +67,22 @@ const messageReducer = (messages = initialState, action) => {
             getInitialMessages : {
               isPending: false,
               isSuccess: true,
-              isFailure: false,
-              error: null
+              error: null,
             },
             messages: action.msg
 
           }; 
        case "GET_IM_FAILURE":
-         //failed but is donoe
+         //failed but is done
          //save the error so we can display it somewhere
          //since it failed:
         
           return {
+            ...messages,
             getInitialMessages : {
               isPending: false,
               isSuccess: false,
-              isFailure: true,
-              error: action.error
+              error: action.error,
             },
             messages: []
              //tentative: no messages displayed-> can also keep them around!
