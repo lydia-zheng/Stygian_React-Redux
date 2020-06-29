@@ -12,7 +12,7 @@ export default function MsgList (){
 
     /* const [loading, setLoading] = useState(true);
     const [error, setError] = useState('')*/
-    const [get, setGet] = useState({}); //data for initial messages 
+    //const [get, setGet] = useState({}); //data for initial messages 
 
     //fetching from API endpoint
     //empty dependency array ensures API is only called once
@@ -22,7 +22,7 @@ export default function MsgList (){
     
     }, []); 
     
-    const listItems = useSelector(state => state.messages.messages); //first messages is im in messageReducer; .messages gives the array part of messages
+    const listItems = useSelector(state => state.messages.messages); //first messages is the messageReducer; .messages gives the array part of messages
     
     
 
@@ -49,8 +49,7 @@ export default function MsgList (){
 
        
         return (
-            <Fragment key= {i}>
-                
+            <Fragment key= {i}> 
                 {
                         <li className="msg_send" onClick = {() =>getActiveMessageID(i)}>
                         <div className="msg">

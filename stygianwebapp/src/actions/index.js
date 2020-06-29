@@ -66,8 +66,8 @@ export const getIm = () => {
     axios
       .get('http://localhost:9000/messages')
             .then(res => {
-              dispatch(getImSucess(res.data));              
-              console.log("Res data:", res.data);//debug usg
+              dispatch(getImSucess(res.data.data));   //first data is the general api response data, second for data field which returns the array           
+              console.log("Res data:", res.data.data);//debug usg
             })
             .catch( err => {
                 dispatch(getImFailure(err));
