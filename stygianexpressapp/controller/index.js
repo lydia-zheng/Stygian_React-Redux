@@ -1,9 +1,9 @@
 const Messages = require('../models/MsgModel');
 
 const express = require('express');
-const Request = require("request");
 
-//TODO:messages are currently 404 not found
+
+//retrieves messages from mongodb via mongoose
 const getMessages = async (req, res) => {
 
     await Messages.find({}, (err, messages) => {

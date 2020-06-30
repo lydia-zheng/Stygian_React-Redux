@@ -27,7 +27,7 @@ app.use('/api', indexRouter);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.disable('etag'); //disable entity tags to avoid 304?
+app.disable('etag'); //disable entity tags to avoid 304?Caching issues
 
 
 
