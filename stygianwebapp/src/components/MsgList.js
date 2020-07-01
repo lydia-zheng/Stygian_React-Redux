@@ -32,12 +32,7 @@ export default function MsgList (){
    
 
      //TODO: somehow load data into ims so the mapping starts
-    let msgsToRender;
-    
-
-    console.log("listItems", listItems);
-
-    msgsToRender =
+    let msgsToRender =
     
         listItems.map((msg, i) => {
         //iterate  and get the hook's default isShowing and toggle for each message
@@ -61,7 +56,8 @@ export default function MsgList (){
             </Fragment>
         )
     })
-    //console.log("msgtoRender", msgsToRender);
+    
+    
     
     
      //TODO: SET UP CONDITIONS FOR LOADING, SUCCESS AND FAILURE TO DECIDE WHAT TO DISPLAY
@@ -70,7 +66,7 @@ export default function MsgList (){
     //might need to test/debug failure condition
     <ul className= "msg_list"> 
             {stateOfRequest.isPending ? "Loading" :  msgsToRender}
-            {stateOfRequest.isFailure ? stateOfRequest.error : null }
+            {stateOfRequest.isFailure ? <div>Error! {stateOfRequest.error.message}</div> : null }
     </ul> 
     );
 

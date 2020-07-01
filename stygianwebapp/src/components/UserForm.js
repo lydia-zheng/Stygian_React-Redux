@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux'; //connect used in old version
-import { handleUser, handleMsg, postMessage, getIm } from '../actions';
+import { handleUser, handleMsg, postMessage} from '../actions';
 
 
 export default function UserForm () {

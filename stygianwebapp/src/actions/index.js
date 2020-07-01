@@ -70,6 +70,7 @@ export const getImSucess = (msg) => {
 export const getImFailure = (error) =>{
   return {
     type:"GET_IM_FAILURE",
+    //error : { error }
     error
   };
 }
@@ -91,7 +92,7 @@ export const postMessageSuccess = (response, newMsg) => {
 export const postMessageFailure = (error) => {
   return {
     type: "POST_MESSAGE_FAILURE",
-    error
+    error 
   }
 }
 
@@ -104,12 +105,13 @@ export const getIm = () => {
     dispatch(getImPending());
 
     axios
-      .get('http://localhost:9000/messages')
+      .get('http://localhost:9000/messages') //change to broken url for testing error handling 
             .then(res => {
               dispatch(getImSucess(res.data.data));   //first data is the general api response data, second for data field which returns the array           
               //console.log("Res data:", res.data.data);//debug use
             })
             .catch( err => {
+                console.log("Im error:", err);//debug use
                 dispatch(getImFailure(err));
             } 
             )
@@ -122,7 +124,7 @@ export const postMessage = (newMsg) => {
     dispatch(postMessagePending());
 
     axios
-      .post('http://localhost:9000/add', newMsg)
+      .post('http://localhost:9000/add', newMsg)//change to broken url for testing error handling 
       .then(res => {
         dispatch(postMessageSuccess(res.data.data, newMsg)); //debug
         //console.log("Res data:", res.data.data);
