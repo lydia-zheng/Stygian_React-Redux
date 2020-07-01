@@ -10,4 +10,4 @@ const Message = new Schema(
     },
 );
 
-module.exports = mongoose.model('messages', Message);
+module.exports = mongoose.model('messages', Message); //connects it to messages collection

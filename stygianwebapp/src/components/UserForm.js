@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {useSelector, useDispatch } from 'react-redux'; //connect used in old version
-import { handleUser, handleMsg, handleSubmit } from '../actions';
+import React, {useState, useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux'; //connect used in old version
+import { handleUser, handleMsg, postMessage, getIm } from '../actions';
 
 
 export default function UserForm () {
@@ -12,13 +12,13 @@ export default function UserForm () {
     //remember global state struction structure currently looks like this:
     //state: {
     //  value    
-    //}
-    //TODO: state.value figure out
+    //} 
     const value = useSelector(state => state.value);
 
     const [newName, setNewName] = useState ();
     const [newC, setNewC] = useState ();
     const [newD, setNewD] = useState ();
+
 
 
     //callback function to dispatch the handleChange 'action' to our 'reducers'
@@ -30,11 +30,13 @@ export default function UserForm () {
 
     const handle_Msg = (e) => {
         setNewC(e.target.value); //sets the new filled out states for newMsg to be added
-
-       
-
+        const timestamp = Math.floor (Date.now() /1000); //converts to unix timestamp
         
+        //read the value in render function; after react updated DOM
+        setNewD(timestamp);
+        console.log("date inside handleMsg:", timestamp);
         dispatch(handleMsg(e.target.name, e.target.value));
+        
     }
 
     
@@ -51,42 +53,33 @@ export default function UserForm () {
             content: newC,
             date: newD
         }
-        const timestamp = Date.now()/1000; //converts to unix timestamp
-            
-        //setNewD( new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(timestamp)); 
-     
-        setNewD(timestamp); 
         
-        console.log(addedMsg.date);
-        
-        if (addedMsg.name && addedMsg.content){
+
+       
+        if (addedMsg.name && addedMsg.content && addedMsg.date){
+            console.log("inside adding new message!", addedMsg)
+            dispatch(postMessage(addedMsg)); //api call
             
-
-            dispatch(handleSubmit(addedMsg));
-
            
-        }   
+
+            setNewC(''); //clear the fields so new message can be written
+            setNewD(null); //clear the fields so new date can be added
+        
+        //dispatch(handleSubmit(addedMsg)); //old implementation
+
     
-        //sending data to server
-        //TODO: should handle _id in back end server
-       
-       
-       
-        /*  axios({
+        } 
+        
             
-            url:'http://localhost:9000/save',
-            method: 'POST',
-            data: addedMsg
-        })
-        .then(() => {
-            console.log('Data has been sent to the server');
-        })
-        .catch(() => {
-            console.log('Internal server error');
-        });; */
+       
         
     }
 
+
+       
+
+       
+    
      
        //maybe replace submit button to general button component type
        

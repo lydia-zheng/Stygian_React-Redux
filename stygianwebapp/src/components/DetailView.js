@@ -2,7 +2,7 @@ import React from 'react';
 //import ReactDOM from 'react-dom';
 //import MsgList from './MsgList';
 import { useSelector } from 'react-redux';
-import useModal from './useModal';
+//import useModal from './useModal';
 
 //citing:https://upmostly.com/tutorials/modal-components-react-custom-hooks
 //A stateless functional component that takes two props and only returns HTML when isShowing is true.
@@ -19,7 +19,7 @@ import useModal from './useModal';
 
 
 export default function DetailView (){
-    const hide = useModal.hide;
+    //const hide = useModal.hide;
 
     const activeMsgID = useSelector(state => state.id);
     const msgList = useSelector(state =>state.messages.messages);

@@ -56,26 +56,6 @@ export function getDelete(id) {
   };
 }
 
-//api call actions
-//Get initial message
-
-export const getIm = () => {
-  return dispatch => {
-    dispatch(getImPending());
-
-    axios
-      .get('http://localhost:9000/messages')
-            .then(res => {
-              dispatch(getImSucess(res.data.data));   //first data is the general api response data, second for data field which returns the array           
-              console.log("Res data:", res.data.data);//debug usg
-            })
-            .catch( err => {
-                dispatch(getImFailure(err));
-            } 
-            )
-    
-  }
-}
 export const getImPending = () =>{
   return {
     type: "GET_IM_PENDING",
@@ -94,5 +74,62 @@ export const getImFailure = (error) =>{
   };
 }
 
+export const postMessagePending = () => {
+  return {
+    type: "POST_MESSAGE_PENDING"
+  }
+}
 
+export const postMessageSuccess = (response, newMsg) => {
+  return {
+    type: "POST_MESSAGE_SUCCESS",
+    response,
+    newMsg //unsure if this is alright; need it for rendering after post
+  }
+}
+
+export const postMessageFailure = (error) => {
+  return {
+    type: "POST_MESSAGE_FAILURE",
+    error
+  }
+}
+
+/*API CALL ACTIONS*/
+
+
+//Get initial message
+export const getIm = () => {
+  return dispatch => {
+    dispatch(getImPending());
+
+    axios
+      .get('http://localhost:9000/messages')
+            .then(res => {
+              dispatch(getImSucess(res.data.data));   //first data is the general api response data, second for data field which returns the array           
+              //console.log("Res data:", res.data.data);//debug use
+            })
+            .catch( err => {
+                dispatch(getImFailure(err));
+            } 
+            )
+    
+  }
+}
+
+export const postMessage = (newMsg) => {
+  return dispatch => {
+    dispatch(postMessagePending());
+
+    axios
+      .post('http://localhost:9000/add', newMsg)
+      .then(res => {
+        dispatch(postMessageSuccess(res.data.data, newMsg)); //debug
+        //console.log("Res data:", res.data.data);
+      })
+      .catch (err => {
+        dispatch(postMessageFailure(err));
+      })
+  }
+}
 

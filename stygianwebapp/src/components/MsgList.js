@@ -1,7 +1,7 @@
 //TODO EVERYTHING; template
-import React, {Fragment, useState, useEffect} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import {useSelector, useDispatch } from 'react-redux';
-import { getActiveMsg, getDelete, getIm } from '../actions';
+import { getActiveMsg, getDelete, getIm,postMessage } from '../actions';
 
 
 export default function MsgList (){
@@ -9,10 +9,6 @@ export default function MsgList (){
 
 
     const dispatch = useDispatch();
-
-    /* const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('')*/
-    //const [get, setGet] = useState({}); //data for initial messages 
 
     //fetching from API endpoint
     //empty dependency array ensures API is only called once
@@ -23,7 +19,7 @@ export default function MsgList (){
     }, []); 
     
     const listItems = useSelector(state => state.messages.messages); //first messages is the messageReducer; .messages gives the array part of messages
-    
+    const stateOfRequest = useSelector(state => state.messages.requestStatus);
     
 
     const getActiveMessageID = (i) => {
@@ -70,9 +66,11 @@ export default function MsgList (){
     
      //TODO: SET UP CONDITIONS FOR LOADING, SUCCESS AND FAILURE TO DECIDE WHAT TO DISPLAY
     return( 
-    
+    //loads messages if state is not pending/loading
+    //might need to test/debug failure condition
     <ul className= "msg_list"> 
-            {msgsToRender}
+            {stateOfRequest.isPending ? "Loading" :  msgsToRender}
+            {stateOfRequest.isFailure ? stateOfRequest.error : null }
     </ul> 
     );
 

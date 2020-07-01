@@ -4,13 +4,16 @@ import {combineReducers } from 'redux';
 
 //**TODO**: comment this out/readjust to be empty object; have get request handle grabbing initial data
 const initialState = {
-  getInitialMessages: {
+
+  requestStatus: {
     isPending: false,
     isSuccess: false,
     isFailure: false,
+    error: null
   },
-   messages: [
-]
+ 
+  messages: [],
+  serverResponse: null //TODO: figure out if this field is necessary
 
 }
  
@@ -29,7 +32,7 @@ const messageReducer = (messages = initialState, action) => {
    switch (action.type)
    {
      
-     case "HANDLE_SUBMIT":
+    /*  case "HANDLE_SUBMIT":
        //adds the submitted message to the existing im
       return {
         //concat newMsg to array of messages;
@@ -37,7 +40,7 @@ const messageReducer = (messages = initialState, action) => {
         ...messages, //should be grabbing the 3 booleans
         messages: [...messages.messages, action.newMsg], //spread attribute : ...
       }
-
+ */
      case "GET_DELETE":
        return {
          //return the filtered message list that's not the deleted id
@@ -45,49 +48,90 @@ const messageReducer = (messages = initialState, action) => {
         ...messages, //should be grabbing three booleans
          messages: messages.messages.filter((m, i) => i!== action.id),
        }
-       case "GET_IM_PENDING":
+      case "GET_IM_PENDING":
          //mark state as "loading" so it can show spinner or something
          //reset all errors
-         return {
-           ...messages, //spread operator: same as object.assign but cleaner
-           getInitialMessages : {
-             isPending: true,
-             isSuccess: false,
-             error: null,
-           },
+        return {
+          ...messages, //spread operator: same as object.assign but cleaner
+          requestStatus : {
+            isPending: true,
+            isSuccess: false,
+            isFailure: false,
+            error: null,
+          },
 
-         };
+        };
        
-       case "GET_IM_SUCESS":
+      case "GET_IM_SUCESS":
           //Todo: API fetch call to grab initial messages
           //All done: set pending to false
           //replace items with ones returned from server
-          return {
-            ...messages,
-            getInitialMessages : {
-              isPending: false,
-              isSuccess: true,
-              error: null,
-            },
-            messages: action.msg
+        return {
+          ...messages,
+          requestStatus : {
+            isPending: false,
+            isSuccess: true,
+            isFailure: false,
+            error: null,
+          },
+          messages: action.msg
 
-          }; 
-       case "GET_IM_FAILURE":
+        }; 
+      case "GET_IM_FAILURE":
          //failed but is done
          //save the error so we can display it somewhere
          //since it failed:
         
-          return {
-            ...messages,
-            getInitialMessages : {
-              isPending: false,
-              isSuccess: false,
-              error: action.error,
-            },
-            messages: []
-             //tentative: no messages displayed-> can also keep them around!
-             //edit later
-          }; 
+        return {
+          ...messages,
+          requestStatus : {
+            isPending: false,
+            isSuccess: false,
+            isFailure: true,
+            error: action.error,
+          },
+          messages: []
+            //tentative: no messages displayed-> can also keep them around!
+            //edit later
+        }; 
+      case "POST_MESSAGE_PENDING":
+         //started to send new message via form
+        return {
+          ...messages,
+          requestStatus:{
+          isPending: true,
+          isSuccess: false,
+          isFailure: false,
+          error: null,
+          },
+          serverResponse: {} //clear old response if any
+        };
+      case "POST_MESSAGE_SUCCESS":
+        //successfully sent post request
+        return {
+          ...messages,
+          requestStatus:{
+            isPending: false,
+            isSuccess: true,
+            isFailure: false,
+            error: null,
+          },
+          messages: [...messages.messages, action.newMsg ], 
+          //not sure if the message should be modified here but without it have to manually refresh to see changes
+          serverResponse: action.response
+
+      };
+    case "POST_MESSAGE_FAILURE":
+      return {
+        ...messages,
+        requestStatus : {
+          isPending: false,
+          isSuccess: false,
+          isFailure: true,
+          error: action.error,
+        },
+        serverResponse: {}
+      }
 
 
      default: return messages; //returns object of array of messages
