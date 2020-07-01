@@ -4,6 +4,7 @@ import MsgList from './MsgList';
 import '../App.css';
 import DetailView from './DetailView';
 import useModal from './useModal';
+import ClearButton from './ClearButton'
 
 
 
@@ -16,8 +17,9 @@ function App () {   //this is how you make a functional component
        <header>Stygian Home</header>
       <section className="container">
         <div id="all_messages">
-          <MsgList />
+          <MsgList /> 
           <button className="detail_button" onClick={() => toggle()}>Show Details</button>   
+          <ClearButton/>
         </div>
         <div id="form">
         {isShowing ? 
@@ -30,7 +32,7 @@ function App () {   //this is how you make a functional component
         }
         <UserForm/>
       </div>
-
+        
       </section>
       </div>
      

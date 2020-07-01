@@ -1,6 +1,7 @@
 var express = require('express');
 const controller = require('../controller');
 const addController = require('../controller/NewMessageController.js');
+const deleteController = require('../controller/deleteAllController.js');
 var router = express.Router();
 
 
@@ -17,8 +18,13 @@ router.get('/', function(req, res, next) {
 router.get('/messages', controller.getMessages);
 
 //the route that react uses to send the new message data
-//TODO: not implemented proper with front end yet; currently 404?
 router.post('/add', addController.postMessage); 
+
+//the route to delete all messages; remember to uncomment populate script in app.js afterwards
+router.delete('/', deleteController.deleteAll);
+
+
+
 
 
 

@@ -132,6 +132,42 @@ const messageReducer = (messages = initialState, action) => {
         },
         serverResponse: {}
       }
+    case "DELETE_ALL_PENDING":
+      return {
+        ...messages,
+        requestStatus:{
+        isPending: true,
+        isSuccess: false,
+        isFailure: false,
+        error: null,
+        },
+        serverResponse: {} //clear old response if any
+      }
+    case "DELETE_ALL_SUCCESS":
+      return {
+        ...messages,
+        requestStatus:{
+          isPending: false,
+          isSuccess: true,
+          isFailure: false,
+          error: null,
+        },
+        messages: [], //empties the messages since they were already successfully updated in db as well.
+        serverResponse: {}
+      }
+      
+    case "DELETE_ALL_FAILURE":
+      return {
+        ...messages,
+        requestStatus : {
+          isPending: false,
+          isSuccess: false,
+          isFailure: true,
+          error: action.error,
+        },
+        serverResponse: {}
+      }
+      
 
 
      default: return messages; //returns object of array of messages

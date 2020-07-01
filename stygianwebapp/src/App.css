@@ -153,7 +153,12 @@ label {
   position: absolute;
   top: 2em;
   right: 10em;
-  display:;
+}
+
+#clear {
+  background-color: #14152e;
+  color: rgb(196, 60, 60);
+
 }
  
 

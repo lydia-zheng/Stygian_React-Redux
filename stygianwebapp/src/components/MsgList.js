@@ -1,7 +1,7 @@
 //TODO EVERYTHING; template
 import React, {Fragment, useEffect} from 'react';
 import {useSelector, useDispatch } from 'react-redux';
-import { getActiveMsg, getDelete, getIm,postMessage } from '../actions';
+import { getActiveMsg, getDelete, getIm} from '../actions';
 
 
 export default function MsgList (){
@@ -57,7 +57,7 @@ export default function MsgList (){
         )
     })
     
-    
+   
     
     
      //TODO: SET UP CONDITIONS FOR LOADING, SUCCESS AND FAILURE TO DECIDE WHAT TO DISPLAY

@@ -35,7 +35,7 @@ const populateMessages = () => {
         }
     ];
 
-    for(let i =0; i <messages.length; i++ ){
+    for(let i = 0; i <messages.length; i++ ){
         //iterate through messages and create a new message based on mongoose schema
         let newMessage = new Message(
             messages[i]

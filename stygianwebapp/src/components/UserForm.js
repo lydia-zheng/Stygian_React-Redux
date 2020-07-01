@@ -74,12 +74,6 @@ export default function UserForm () {
        
         
     }
-
-
-       
-
-       
-    
      
        //maybe replace submit button to general button component type
        
