@@ -5,6 +5,8 @@ import '../App.css';
 import DetailView from './DetailView';
 import useModal from './useModal';
 import ClearButton from './ClearButton'
+import Loader from 'react-loader-spinner'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 
 
@@ -13,6 +15,7 @@ function App () {   //this is how you make a functional component
     const {isShowing, toggle} = useModal();
 
     return (
+      
      <div className= "body" > 
        <header>Stygian Home</header>
       <section className="container">

@@ -1,14 +1,16 @@
 //TODO EVERYTHING; template
-import React, {Fragment, useEffect} from 'react';
+import React, {Fragment, useEffect, setTimeOut, useState} from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import { getActiveMsg, getDelete, getIm} from '../actions';
-
+import Loader from 'react-loader-spinner'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 export default function MsgList (){
 
 
 
     const dispatch = useDispatch();
+    const [displayMessage, setDisplayMessage] = useState(false);
 
     //fetching from API endpoint
     //empty dependency array ensures API is only called once
@@ -17,7 +19,23 @@ export default function MsgList (){
         dispatch(getIm());
     
     }, []); 
+
+    useEffect(()=>{
+        console.log(displayMessage);
+        const timeout = setTimeout(enableMessage(),10000);//10 seconds;; TODO: not working: currently doesn't wait to set displayMessage to true        
+        return () => clearTimeout(timeout); //debug?
+    }, []); 
+   
+
+
+    const enableMessage = () => {
+        console.log(displayMessage);
+        setDisplayMessage(true); //toggle boolean to cause delay for message; avoid loading flicker: currently not working
+    }
     
+
+    console.log(displayMessage);
+
     const listItems = useSelector(state => state.messages.messages); //first messages is the messageReducer; .messages gives the array part of messages
     const stateOfRequest = useSelector(state => state.messages.requestStatus);
     
@@ -64,8 +82,29 @@ export default function MsgList (){
     return( 
     //loads messages if state is not pending/loading
     //might need to test/debug failure condition
+   
     <ul className= "msg_list"> 
-            {stateOfRequest.isPending ? "Loading" :  msgsToRender}
+           
+            {stateOfRequest.isPending & displayMessage
+            
+            ? 
+         
+             //'loading'
+            //if case:  show loader
+              <div> 
+              <Loader 
+              type ="BallTriangle"
+              color= "#00BFFF"
+              height={100}
+              width={100}
+              timeout = {10000} //timeout after 10 seconds
+            />
+            </div> 
+            : 
+
+            msgsToRender    
+            
+            }
             {stateOfRequest.isFailure ? <div>Error! {stateOfRequest.error.message}</div> : null }
     </ul> 
     );
