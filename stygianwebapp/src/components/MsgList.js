@@ -16,6 +16,8 @@ export default function MsgList (){
     //empty dependency array ensures API is only called once
     //useEffect for side effect; same as componentdidmount
     useEffect(()=>{
+
+        //TODO: maybe do setTimer here to delay message load to show off spinner? Or potentially do it in Backend Fetch
         dispatch(getIm());
     
     }, []); 

@@ -147,7 +147,7 @@ export const postMessage = (newMsg) => {
       .post('http://localhost:9000/add', newMsg)//change to broken url for testing error handling 
       .then(res => {
         dispatch(postMessageSuccess(res.data.data, newMsg)); //debug
-        //console.log("Res data:", res.data.data);
+        //TODO: add dispatch IM here and take out the change to local state that happens in post reducer!!!!
       })
       .catch (err => {
         dispatch(postMessageFailure(err));
