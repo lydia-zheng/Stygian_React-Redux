@@ -21,7 +21,7 @@ const getMessages = async (req, res) => {
                 })
         } */
 
-        return res.status(200).json({sucess: true, data: messages})
+        return res.status(200).json({success: true, data: messages}) 
         
    }).catch(err =>console.log(err))
 };
