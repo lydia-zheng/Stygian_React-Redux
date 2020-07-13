@@ -4,18 +4,25 @@ import MsgList from './MsgList';
 import '../App.css';
 import DetailView from './DetailView';
 import useModal from './useModal';
+import ClearButton from './ClearButton'
+import Loader from 'react-loader-spinner'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 
-const App = () => {   //this is how you make a functional component
+
+
+function App () {   //this is how you make a functional component
     const {isShowing, toggle} = useModal();
 
     return (
-    <div className= "body" > 
-      <header>Stygian Home</header>
+      
+     <div className= "body" > 
+       <header>Stygian Home</header>
       <section className="container">
         <div id="all_messages">
-          <MsgList />
+          <MsgList /> 
           <button className="detail_button" onClick={() => toggle()}>Show Details</button>   
+          <ClearButton/>
         </div>
         <div id="form">
         {isShowing ? 
@@ -28,13 +35,11 @@ const App = () => {   //this is how you make a functional component
         }
         <UserForm/>
       </div>
-
+        
       </section>
-      
-      
-      
-
       </div>
+     
+      
     );
   }
 //TODO: add list to the all_messages part; add addition div for details and extra thing

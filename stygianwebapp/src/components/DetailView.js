@@ -2,7 +2,7 @@ import React from 'react';
 //import ReactDOM from 'react-dom';
 //import MsgList from './MsgList';
 import { useSelector } from 'react-redux';
-import useModal from './useModal';
+//import useModal from './useModal';
 
 //citing:https://upmostly.com/tutorials/modal-components-react-custom-hooks
 //A stateless functional component that takes two props and only returns HTML when isShowing is true.
@@ -19,12 +19,14 @@ import useModal from './useModal';
 
 
 export default function DetailView (){
-    const hide = useModal.hide;
+    //const hide = useModal.hide;
 
     const activeMsgID = useSelector(state => state.id);
     const msgList = useSelector(state =>state.messages.messages);
     let name = "N/A";
     let content  = "N/A";
+    let date = "N/A";
+    
     //console.log("activeMsgID:", activeMsgID);
     
     
@@ -33,6 +35,7 @@ export default function DetailView (){
         
         name = msgList[activeMsgID].name;
         content = msgList[activeMsgID].content;
+        date = msgList[activeMsgID].date;
     }
 
     return (
@@ -41,8 +44,9 @@ export default function DetailView (){
             <div className="popup_inner">
                 <h1>Detailed View </h1>
             <p>message index is: {activeMsgID} <br/><br/>
-            message username: {name}<br/><br/>
-            message content: {content}<br/><br/>
+            username: {name}<br/><br/>
+            content: {content}<br/><br/>
+            date: {date} <br/><br/>
             </p>
             
             </div>
