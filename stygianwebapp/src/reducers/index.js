@@ -115,8 +115,9 @@ const messageReducer = (messages = initialState, action) => {
             isSuccess: true,
             isFailure: false,
             error: null,
-          },
-          messages: [...messages.messages, action.newMsg ], 
+          } ,
+          /*messages: [...messages.messages, action.newMsg ],  */
+          
           //not sure if the message should be modified here but without it have to manually refresh to see changes
           serverResponse: action.response
 

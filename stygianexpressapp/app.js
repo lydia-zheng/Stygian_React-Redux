@@ -53,8 +53,8 @@ app.use(function(err, req, res, next) {
 
 //used to populate the database with messages.Don't uncomment unless messages need to be readded to db!
  
-//const populateMessages = require("./scripts/populateMessages");
-//populateMessages();
+/* const populateMessages = require("./scripts/populateMessages");
+populateMessages(); */
 
 
 //database:
