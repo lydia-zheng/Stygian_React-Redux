@@ -11,15 +11,15 @@ const database = require('./database');
 
 var app = express();
 
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public'))); //uncomment if build content is spilled into public
 
  //code to let express server know to serve build (react project)
-/* app.use(express.static(path.join(__dirname, 'build')));
+ app.use(express.static(path.join(__dirname, 'build')));
 
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});  */
+});  
 
 
 // view engine setup

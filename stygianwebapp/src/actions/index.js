@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+axios.defaults.baseURL = 'http://localhost:9000'; //TODO: hardcode this into the heroku app domain?
 
 
 
@@ -125,7 +125,7 @@ export const getIm = () => {
     dispatch(getImPending());
 
     axios
-      .get('http://localhost:9000/messages') 
+      .get('/messages') 
             .then(res => {
               dispatch(getImSucess(res.data.data));   
             })
@@ -143,7 +143,7 @@ export const postMessage = (newMsg) => {
     dispatch(postMessagePending());
 
     axios
-      .post('http://localhost:9000/add', newMsg)
+      .post('/add', newMsg)
       .then(res => {
         dispatch(postMessageSuccess(res.data.data, newMsg)); 
         dispatch(getIm());
@@ -159,7 +159,7 @@ export const deleteAll = () => {
     dispatch(deleteAllPending());
 
     axios
-      .delete('http://localhost:9000')
+      .delete('/')
       .then (res => {
         dispatch(deleteAllSuccess(res.data));
       })

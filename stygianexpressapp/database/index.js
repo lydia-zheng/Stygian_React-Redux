@@ -10,7 +10,7 @@ let DBNAME = "msg";
 let MONGODBCONNECTIONURL = `mongodb+srv://mystic001:${PASSWORD}@stygian.eatfu.mongodb.net/${DBNAME}?retryWrites=true&w=majority`;
 
 mongoose
-        .connect(MONGODBCONNECTIONURL, {useNewUrlParser:true})
+        .connect(process.env.MONGODB_URI || MONGODBCONNECTIONURL, {useNewUrlParser:true})
         .catch(e => {
             console.error('Connection error', e.message);
         });
