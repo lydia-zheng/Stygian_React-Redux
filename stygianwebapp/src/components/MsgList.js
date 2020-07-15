@@ -23,20 +23,20 @@ export default function MsgList (){
     }, []); 
 
     useEffect(()=>{
-        console.log(displayMessage);
+        //console.log(displayMessage);
         const timeout = setTimeout(enableMessage(),10000);//10 seconds;; TODO: not working: currently doesn't wait to set displayMessage to true        
-        return () => clearTimeout(timeout); //debug?
+        return () => clearTimeout(timeout); 
     }, []); 
    
 
 
     const enableMessage = () => {
-        console.log(displayMessage);
+        //console.log(displayMessage);
         setDisplayMessage(true); //toggle boolean to cause delay for message; avoid loading flicker: currently not working
     }
     
 
-    console.log(displayMessage);
+    //console.log(displayMessage);
 
     const listItems = useSelector(state => state.messages.messages); //first messages is the messageReducer; .messages gives the array part of messages
     const stateOfRequest = useSelector(state => state.messages.requestStatus);
@@ -51,13 +51,14 @@ export default function MsgList (){
     }
    
 
-     //TODO: somehow load data into ims so the mapping starts
-    let msgsToRender =
-    
+    //TODO: Add more with dates field of messages
+    let msgsToRender = []; 
+        if(listItems){
+             msgsToRender =    
         listItems.map((msg, i) => {
         //iterate  and get the hook's default isShowing and toggle for each message
         
-
+        
        
         return (
             <Fragment key= {i}> 
@@ -68,22 +69,24 @@ export default function MsgList (){
                             <button onClick= {()=>getDeleteId(i)}>X</button>
                 <div className="msg_username">{msg.name}</div>
                 <div className="msg_message">{msg.content}</div>
-                {/* <div className="msg_date">{msg.date}</div> */}
                         </div>
                         </div>
                     </li>   
                 }
             </Fragment>
         )
-    })
+        })
+    }
+       
     
    
     
     
      //TODO: SET UP CONDITIONS FOR LOADING, SUCCESS AND FAILURE TO DECIDE WHAT TO DISPLAY
-    return( 
-    //loads messages if state is not pending/loading
+     //loads messages if state is not pending/loading
     //might need to test/debug failure condition
+     return( 
+   
    
     <ul className= "msg_list"> 
            
@@ -91,15 +94,13 @@ export default function MsgList (){
             
             ? 
          
-             //'loading'
-            //if case:  show loader
               <div> 
               <Loader 
               type ="BallTriangle"
               color= "#00BFFF"
               height={100}
               width={100}
-              timeout = {10000} //timeout after 10 seconds
+              timeout = {10000} 
             />
             </div> 
             : 

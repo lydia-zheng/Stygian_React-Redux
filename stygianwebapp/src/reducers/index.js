@@ -43,9 +43,7 @@ const messageReducer = (messages = initialState, action) => {
  */
      case "GET_DELETE":
        return {
-         //return the filtered message list that's not the deleted id
-        //TODO: messages.message may be changed due to structure change
-        ...messages, //should be grabbing three booleans
+        ...messages, 
          messages: messages.messages.filter((m, i) => i!== action.id),
        }
       case "GET_IM_PENDING":

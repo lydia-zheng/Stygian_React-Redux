@@ -5,9 +5,9 @@ import axios from 'axios';
 
 //TODO: if time permitted extract action strings into a constant.js with action object
 export const handleUser = (input_name1, value) => {
+  //add could be called payload or anything used in action
   return {
     type: "HANDLE_USER",
-    //add could be called payload or anything used in action
     input_name1,
     value
   };
@@ -68,9 +68,9 @@ export const getImSucess = (msg) => {
   };
 }
 export const getImFailure = (error) =>{
+   //error : { error }
   return {
     type:"GET_IM_FAILURE",
-    //error : { error }
     error
   };
 }
@@ -85,7 +85,7 @@ export const postMessageSuccess = (response, newMsg) => {
   return {
     type: "POST_MESSAGE_SUCCESS",
     response,
-    newMsg //unsure if this is alright; need it for rendering after post
+    newMsg 
   }
 }
 
@@ -125,13 +125,12 @@ export const getIm = () => {
     dispatch(getImPending());
 
     axios
-      .get('http://localhost:9000/messages') //change to broken url for testing error handling 
+      .get('http://localhost:9000/messages') 
             .then(res => {
-              dispatch(getImSucess(res.data.data));   //first data is the general api response data, second for data field which returns the array           
-              //console.log("Res data:", res.data.data);//debug use
+              dispatch(getImSucess(res.data.data));   
             })
             .catch( err => {
-                console.log("Im error:", err);//debug use
+                console.log("Im error:", err);
                 dispatch(getImFailure(err));
             } 
             )
@@ -144,10 +143,9 @@ export const postMessage = (newMsg) => {
     dispatch(postMessagePending());
 
     axios
-      .post('http://localhost:9000/add', newMsg)//change to broken url for testing error handling 
+      .post('http://localhost:9000/add', newMsg)
       .then(res => {
-        dispatch(postMessageSuccess(res.data.data, newMsg)); //debug
-        //to retrieve the updated list of messages
+        dispatch(postMessageSuccess(res.data.data, newMsg)); 
         dispatch(getIm());
       })
       .catch (err => {
@@ -163,7 +161,7 @@ export const deleteAll = () => {
     axios
       .delete('http://localhost:9000')
       .then (res => {
-        dispatch(deleteAllSuccess(res.data)); //might be res.data.data
+        dispatch(deleteAllSuccess(res.data));
       })
       .catch (err => {
         dispatch(deleteAllFailure(err));

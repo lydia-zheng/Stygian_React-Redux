@@ -1,6 +1,7 @@
 {
   "name": "assignment_2",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -15,7 +16,7 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },
-  "scripts": {
+    "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

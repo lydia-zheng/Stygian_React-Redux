@@ -9,7 +9,7 @@ export default function UserForm () {
 
     //callback for handling clearing 
     const handle_Button = (e) => {
-            dispatch(deleteAll()); //TODO: action name in here and setting up action & reducer
+            dispatch(deleteAll()); 
     }
 
     return (

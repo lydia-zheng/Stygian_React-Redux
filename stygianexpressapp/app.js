@@ -11,6 +11,16 @@ const database = require('./database');
 
 var app = express();
 
+app.use(express.static(path.join(__dirname, 'public')));
+
+ //code to let express server know to serve build (react project)
+/* app.use(express.static(path.join(__dirname, 'build')));
+
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});  */
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,9 +35,9 @@ app.use(cookieParser());
 app.use('/', indexRouter);
 app.use('/api', indexRouter);
 
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.disable('etag'); //disable entity tags to avoid 304?Caching issues
+
+
 
 
 

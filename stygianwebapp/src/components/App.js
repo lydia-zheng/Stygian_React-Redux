@@ -42,6 +42,6 @@ function App () {   //this is how you make a functional component
       
     );
   }
-//TODO: add list to the all_messages part; add addition div for details and extra thing
+
 
 export default App;
