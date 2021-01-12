@@ -1,5 +1,7 @@
 import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:9000'; //TODO: hardcode this into the heroku app domain?
+require('dotenv').config();
+axios.defaults.baseURL = process.env.HEROKU_URL || "https://stygianserver.herokuapp.com/"
+//'http://localhost:9000'; 
 
 
 

@@ -30,11 +30,18 @@ export default function UserForm () {
 
     const handle_Msg = (e) => {
         setNewC(e.target.value); //sets the new filled out states for newMsg to be added
-        const timestamp = Math.floor (Date.now() /1000); //converts to unix timestamp
+        const unix_timestamp = Math.floor (Date.now() /1000); //converts to unix timestamp
         
+        const date = new Date (unix_timestamp * 1000);
+        const hours = date.getHours();
+        const minutes = "0" + date.getMinutes();
+        const seconds = "0"+ date.getSeconds();
+
+        //properly formatted
+        const timestamp = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
         //read the value in render function; after react updated DOM
         setNewD(timestamp);
-        console.log("date inside handleMsg:", timestamp);
+        //console.log("fomrattedTime:", timestamp);
         dispatch(handleMsg(e.target.name, e.target.value));
         
     }

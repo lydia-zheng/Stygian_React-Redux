@@ -28,7 +28,7 @@ const initialForm = {
 //**Reducers** TODO: Might need to combine messageReducer into formReducer
 
 const messageReducer = (messages = initialState, action) => {
-   //TODO: add more actions that reducer computes on; figure out if initialize_messages is correct
+  
    switch (action.type)
    {
      
