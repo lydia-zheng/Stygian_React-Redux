@@ -6,7 +6,7 @@ const Message = new Schema(
         _id: {type: String, required:true},
         name: {type: String, required: true},
         content: {type:String, required:true},
-        date: {type:Number, required:true}
+        date: {type:String, required:true}
     },
 );
 
